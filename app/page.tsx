@@ -268,11 +268,14 @@ export default function Page() {
 						</p>
 						<div className="mt-6 flex flex-wrap justify-center gap-3">
 							<a
-								href="onryki.work@gmail.com"
+								href={`mailto:onryki.work@gmail.com?subject=${encodeURIComponent(
+									'お問い合わせ（ポートフォリオLP）',
+								)}&body=${encodeURIComponent('お名前：\nご用件：\n')}`}
 								className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-gray-900 text-white dark:bg-white dark:text-gray-900 hover:opacity-90"
 							>
 								<Mail className="h-4 w-4" /> メールで相談する
 							</a>
+
 							<a
 								href="https://github.com/pp-no"
 								target="_blank"
