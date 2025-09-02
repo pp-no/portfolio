@@ -1,0 +1,8 @@
+/* app/globals.css */
+@import "tailwindcss";
+
+/* どのファイルをスキャンするか (v4ではCSSで宣言) */
+@source "./app/**/*.{js,ts,jsx,tsx,mdx}" "./components/**/*.{js,ts,jsx,tsx,mdx}";
+
+/* 任意の追加スタイル */
+html { scroll-behavior: smooth; }
