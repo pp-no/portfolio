@@ -187,7 +187,7 @@ export default function Page() {
 							<div className="rounded-3xl border border-gray-200 dark:border-gray-800 p-6 bg-white/70 dark:bg-gray-900/50">
 								<h3 className="font-semibold">価値観</h3>
 								<p className="mt-2 text-gray-600 dark:text-gray-300 text-sm">
-									小さく作って素早く届ける。可読性の高いコード、堅牢なエラーハンドリング、段階的な導入でプロダクトを安定させます。
+									小さく作って素早く届ける。SEOを意識した可読性の高いコード、堅牢なエラーハンドリング、段階的な導入でプロダクトを安定させます。
 								</p>
 								<div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
 									{[
