@@ -1,6 +1,7 @@
 /* app/globals.css */
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
 /* どのファイルをスキャンするか (v4ではCSSで宣言) */
 @source "./app/**/*.{js,ts,jsx,tsx,mdx}" "./components/**/*.{js,ts,jsx,tsx,mdx}";
 
