@@ -30,6 +30,13 @@ const useProjects = (): Project[] =>
 				link: 'https://todo-next-kappa-wheat.vercel.app',
 			},
 			{
+				title: 'Nuxt.js yahoo記事表示',
+				description:
+					'Nuxt.js を利用した yahooニュースの最新記事5件表示。',
+				tech: ['Nuxt.js', 'TypeScript', 'RSS'],
+				link: 'https://github.com/pp-no/nuxt-yahoo-ai-lp',
+			},
+			{
 				title: 'Smarty SSG テスト実装',
 				description:
 					'Smarty (PHPテンプレートエンジン) を用いた SSG (静的サイトジェネレーター) のテスト環境。構成や生成方法を確認するために作成しました。',
