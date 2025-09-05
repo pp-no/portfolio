@@ -46,6 +46,14 @@ export default function Page() {
 			<LogosSection />
 			<FaqSection />
 			<ContactCtaSection />
+			<div className="text-center">
+				<a
+					href="./"
+					className="rounded-lg bg-gray-900 px-3.5 py-2 text-sm font-medium text-white hover:bg-black"
+				>
+					TOPへ戻る
+				</a>
+			</div>
 		</main>
 	);
 }

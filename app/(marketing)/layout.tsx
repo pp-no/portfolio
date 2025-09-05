@@ -10,7 +10,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
 						<span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-gray-900 text-white">
 							A
 						</span>
-						<span className="text-sm font-semibold">AcmeFlow</span>
+						<span className="text-sm font-semibold">SAMPLE</span>
 					</div>
 					<nav className="hidden gap-6 text-sm sm:flex">
 						<a href="/lp#reasons" className="hover:text-gray-600">
