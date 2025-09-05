@@ -50,6 +50,13 @@ const useProjects = (): Project[] =>
 				tech: ['ASP.NET', 'C#', 'SQLite'],
 				link: 'https://github.com/pp-no/my-dotNet-site',
 			},
+			{
+				title: 'サンプルLP (Next.js)',
+				description:
+					'Next.js と TailwindCSS を用いたサンプルのランディングページ。SEOを意識したコーディングと、レスポンシブ対応、アクセシビリティにも配慮。',
+				tech: ['Next.js', 'LP', 'TailwindCSS'],
+				link: 'https://todo-next-kappa-wheat.vercel.app/lp',
+			},
 		],
 		[],
 	);
