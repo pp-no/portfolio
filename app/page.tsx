@@ -53,7 +53,7 @@ const useProjects = (): Project[] =>
 			{
 				title: 'サンプルLP (Next.js)',
 				description:
-					'Next.js と TailwindCSS を用いたサンプルのランディングページ。SEOを意識したコーディングと、レスポンシブ対応、アクセシビリティにも配慮。',
+					'Next.js と TailwindCSS を用いたWeb/ソフトウェア業サンプルのランディングページ。SEOを意識したコーディングと、レスポンシブ対応、アクセシビリティにも配慮。',
 				tech: ['Next.js', 'LP', 'TailwindCSS'],
 				link: 'https://portfolio-rouge-two-50.vercel.app/lp',
 			},
