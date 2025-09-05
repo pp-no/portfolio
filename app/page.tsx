@@ -51,6 +51,13 @@ const useProjects = (): Project[] =>
 				link: 'https://github.com/pp-no/my-dotNet-site',
 			},
 			{
+				title: 'サンプルLP',
+				description:
+					'スターバックス風のキャンペーンLPを HTML / CSS / jQuery だけで再現したテンプレートです。',
+				tech: ['HTML', 'CSS', 'jQuery'],
+				link: 'https://static-sample-lp.onrender.com/',
+			},
+			{
 				title: 'サンプルLP (Next.js)',
 				description:
 					'Next.js と TailwindCSS を用いたWeb/ソフトウェア業サンプルのランディングページ。SEOを意識したコーディングと、レスポンシブ対応、アクセシビリティにも配慮。',
