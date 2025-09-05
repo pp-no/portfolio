@@ -55,7 +55,7 @@ const useProjects = (): Project[] =>
 				description:
 					'Next.js と TailwindCSS を用いたサンプルのランディングページ。SEOを意識したコーディングと、レスポンシブ対応、アクセシビリティにも配慮。',
 				tech: ['Next.js', 'LP', 'TailwindCSS'],
-				link: 'https://todo-next-kappa-wheat.vercel.app/lp',
+				link: 'https://portfolio-rouge-two-50.vercel.app/lp',
 			},
 		],
 		[],
