@@ -44,10 +44,10 @@ const useProjects = (): Project[] =>
 				link: 'https://github.com/pp-no/my-ssg-site',
 			},
 			{
-				title: 'ASP.NET C# Web 開発テスト',
+				title: 'ASP.NET C# Web 開発',
 				description:
-					'ASP.NET C# を用いた Web 開発の初期実装。簡単な環境構築とページ表示のみ。今後は CRUD システムとして拡張予定。',
-				tech: ['ASP.NET', 'C#', 'Web'],
+					'ASP.NET C# を用いた Web 開発の初期実装。簡単な環境構築とSQLiteからデータを取得しリストページを表示。今後は CRUD システムとして拡張予定。',
+				tech: ['ASP.NET', 'C#', 'SQLite'],
 				link: 'https://github.com/pp-no/my-dotNet-site',
 			},
 		],
