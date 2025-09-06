@@ -37,10 +37,10 @@ const useProjects = (): Project[] =>
 				link: 'https://github.com/pp-no/nuxt-yahoo-ai-lp',
 			},
 			{
-				title: 'Smarty SSG テスト実装',
+				title: 'Smarty SSG LP実装',
 				description:
-					'Smarty (PHPテンプレートエンジン) を用いた SSG (静的サイトジェネレーター) のテスト環境。構成や生成方法を確認するために作成しました。',
-				tech: ['Smarty', 'PHP', 'SSG'],
+					'Smarty (PHPテンプレートエンジン) を用いた SSG (静的サイトジェネレーター) のサンプルLP環境。ファッション系用にサンプルLPの作成。',
+				tech: ['Smarty', 'PHP', 'SSG', 'LP'],
 				link: 'https://github.com/pp-no/my-ssg-site',
 			},
 			{
