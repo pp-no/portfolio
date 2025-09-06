@@ -11,20 +11,7 @@
 ## ✨ About This Portfolio
 
 このリポジトリ自体が **ポートフォリオWebサイト** です。  
-ほかの制作物（Live / Repo）は以下の通り（`app/page.tsx` 内の `useProjects()` で管理）：
-
-1. **Next.js Todo アプリ（開発中）**  
-   - Live (Vercel): https://todo-next-kappa-wheat.vercel.app  
-   - Repo: https://github.com/pp-no/todo-next  
-   - Status: CRUD（登録・編集・削除）動作済み。破壊的操作可（自由に追加・編集・削除OK）
-
-2. **Smarty SSG テスト実装**  
-   - Repo: https://github.com/pp-no/my-ssg-site  
-   - Note: Smarty（PHPテンプレートエンジン）での SSG 構成や生成方法の検証
-
-3. **ASP.NET C# Web 開発テスト**  
-   - Repo: https://github.com/pp-no/my-dotNet-site  
-   - Note: 初期環境構築とページ表示のみ。今後 CRUD に拡張予定
+制作物リンクがございますのでそちらから遷移できます。
 
 > 実務経験の詳細は別資料にて共有可能です。
 
