@@ -64,6 +64,13 @@ const useProjects = (): Project[] =>
 				tech: ['Next.js', 'LP', 'TailwindCSS'],
 				link: 'https://portfolio-rouge-two-50.vercel.app/lp',
 			},
+			{
+				title: 'Google Maps JS API',
+				description:
+					'新しい読み込み方式（importLibrary）”＋Geocoding API＋AdvancedMarker利用で地図表示。入力キーワードで住所検索し、地図にマーカー表示。',
+				tech: ['jQuery', 'GoogleMaps'],
+				link: 'https://github.com/pp-no/my-google-map',
+			},
 		],
 		[],
 	);
