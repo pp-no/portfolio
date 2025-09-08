@@ -41,7 +41,7 @@ const useProjects = (): Project[] =>
 				description:
 					'Smarty (PHPテンプレートエンジン) を用いた SSG (静的サイトジェネレーター) のサンプルLP環境。ファッション系用にサンプルLPの作成。',
 				tech: ['Smarty', 'PHP', 'SSG', 'LP'],
-				link: 'https://github.com/pp-no/my-ssg-site',
+				link: 'https://my-ssg-site-wcl5.onrender.com/',
 			},
 			{
 				title: 'ASP.NET C# Web 開発',
