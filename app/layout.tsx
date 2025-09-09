@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Gtm from './Gtm';
+import { Suspense } from 'react'; // ← 追加
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -19,20 +20,18 @@ export const metadata: Metadata = {
 	description: 'Next.jsによるポートフォリオの作成',
 };
 
-export default function RootLayout({
-	children,
-}: Readonly<{
-	children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
 
 	return (
 		<html lang="en">
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-				{/* GTM (JS) */}
-				<Gtm />
+				{/* GTM (JS) は Suspense でラップ */}
+				<Suspense fallback={null}>
+					<Gtm />
+				</Suspense>
 
-				{/* GTM (noscript) — 必ず <body> 直下 */}
+				{/* GTM (noscript) */}
 				{gtmId ? (
 					<noscript>
 						<iframe
