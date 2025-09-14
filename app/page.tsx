@@ -30,7 +30,7 @@ const useProjects = (): Project[] =>
 					'Next.js を利用した CRUD システム。登録・編集・削除は動作済み。破壊的操作可。個人開発用のため自由に追加・編集・削除して問題ありません。',
 				tech: ['Next.js', 'TypeScript', 'CRUD'],
 				link: 'https://todo-next-kappa-wheat.vercel.app',
-				image: '/img/img_next_todo.png',
+				image: '',
 			},
 			{
 				title: 'Nuxt.js yahoo記事表示',
