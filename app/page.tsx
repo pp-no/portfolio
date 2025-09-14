@@ -3,6 +3,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Mail, ExternalLink, Moon, Sun, ArrowRight } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
+import Image from 'next/image';
 
 /**
  * app/page.tsx（Next.js App Router）
@@ -17,6 +18,7 @@ interface Project {
 	description: string;
 	tech: string[];
 	link?: string; // 外部リンク（任意）
+	image?: string; // サムネイル画像（任意）
 }
 
 const useProjects = (): Project[] =>
@@ -28,6 +30,7 @@ const useProjects = (): Project[] =>
 					'Next.js を利用した CRUD システム。登録・編集・削除は動作済み。破壊的操作可。個人開発用のため自由に追加・編集・削除して問題ありません。',
 				tech: ['Next.js', 'TypeScript', 'CRUD'],
 				link: 'https://todo-next-kappa-wheat.vercel.app',
+				image: '/img/img_next_todo.png',
 			},
 			{
 				title: 'Nuxt.js yahoo記事表示',
@@ -35,6 +38,7 @@ const useProjects = (): Project[] =>
 					'Nuxt.js を利用した yahooニュースの最新記事5件表示。',
 				tech: ['Nuxt.js', 'TypeScript', 'RSS'],
 				link: 'https://github.com/pp-no/nuxt-yahoo-ai-lp',
+				image: '',
 			},
 			{
 				title: 'Smarty SSG LP実装',
@@ -42,6 +46,7 @@ const useProjects = (): Project[] =>
 					'Smarty (PHPテンプレートエンジン) を用いた SSG (静的サイトジェネレーター) のサンプルLP環境。ファッション系用にサンプルLPの作成。',
 				tech: ['Smarty', 'PHP', 'SSG', 'LP'],
 				link: 'https://my-ssg-site-wcl5.onrender.com/',
+				image: '',
 			},
 			{
 				title: 'ASP.NET C# Web 開発',
@@ -49,6 +54,7 @@ const useProjects = (): Project[] =>
 					'ASP.NET C# を用いた Web 開発の初期実装。簡単な環境構築とSQLiteからデータを取得しリストページを表示。今後は CRUD システムとして拡張予定。',
 				tech: ['ASP.NET', 'C#', 'SQLite'],
 				link: 'https://github.com/pp-no/my-dotNet-site',
+				image: '',
 			},
 			{
 				title: 'サンプルLP',
@@ -56,6 +62,7 @@ const useProjects = (): Project[] =>
 					'スターバックス風のキャンペーンLPを HTML / CSS / jQuery だけで再現したテンプレートです。',
 				tech: ['HTML', 'CSS', 'jQuery'],
 				link: 'https://static-sample-lp.onrender.com/',
+				image: '',
 			},
 			{
 				title: 'サンプルLP (Next.js)',
@@ -63,6 +70,7 @@ const useProjects = (): Project[] =>
 					'Next.js と TailwindCSS を用いたWeb/ソフトウェア業サンプルのランディングページ。SEOを意識したコーディングと、レスポンシブ対応、アクセシビリティにも配慮。',
 				tech: ['Next.js', 'LP', 'TailwindCSS'],
 				link: 'https://portfolio-rouge-two-50.vercel.app/lp',
+				image: '',
 			},
 			{
 				title: 'Google Maps JS API',
@@ -70,6 +78,7 @@ const useProjects = (): Project[] =>
 					'新しい読み込み方式（importLibrary）”＋Geocoding API＋AdvancedMarker利用で地図表示。入力キーワードで住所検索し、地図にマーカー表示。',
 				tech: ['jQuery', 'GoogleMaps'],
 				link: 'https://github.com/pp-no/my-google-map',
+				image: '',
 			},
 		],
 		[],
@@ -260,7 +269,20 @@ export default function Page() {
 							>
 								{/* 疑似サムネイル */}
 								<div className="aspect-video rounded-2xl bg-gradient-to-br from-gray-200 via-gray-100 to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-950 flex items-center justify-center">
-									<span className="text-sm text-gray-500 dark:text-gray-400">{p.title}</span>
+									{p.image ? (
+									<Image
+										src={p.image}
+										alt={p.title}
+										fill
+										className="object-cover"
+										sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+										priority={false}
+									/>
+									) : (
+									<div className="w-full h-full bg-gradient-to-br from-gray-200 via-gray-100 to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-950 flex items-center justify-center">
+										<span className="text-sm text-gray-500 dark:text-gray-400">{p.title}</span>
+									</div>
+									)}
 								</div>
 								<h3 className="mt-4 text-lg font-semibold">{p.title}</h3>
 								<p className="mt-2 text-sm text-gray-600 dark:text-gray-300">{p.description}</p>
