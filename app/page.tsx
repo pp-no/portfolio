@@ -30,15 +30,15 @@ const useProjects = (): Project[] =>
 					'Next.js を利用した CRUD システム。登録・編集・削除は動作済み。破壊的操作可。個人開発用のため自由に追加・編集・削除して問題ありません。',
 				tech: ['Next.js', 'TypeScript', 'CRUD'],
 				link: 'https://todo-next-kappa-wheat.vercel.app',
-				image: '',
+				image: '/img/img_next_todo.png',
 			},
 			{
 				title: 'Nuxt.js yahoo記事表示',
 				description:
 					'Nuxt.js を利用した yahooニュースの最新記事5件表示。',
 				tech: ['Nuxt.js', 'TypeScript', 'RSS'],
-				link: 'https://github.com/pp-no/nuxt-yahoo-ai-lp',
-				image: '',
+				link: 'https://nuxt-yahoo-ai-lp.vercel.app/',
+				image: '/img/img_nuxt_yahoo.png',
 			},
 			{
 				title: 'Smarty SSG LP実装',
@@ -46,7 +46,7 @@ const useProjects = (): Project[] =>
 					'Smarty (PHPテンプレートエンジン) を用いた SSG (静的サイトジェネレーター) のサンプルLP環境。ファッション系用にサンプルLPの作成。',
 				tech: ['Smarty', 'PHP', 'SSG', 'LP'],
 				link: 'https://my-ssg-site-wcl5.onrender.com/',
-				image: '',
+				image: '/img/img_fashion_lp.png',
 			},
 			{
 				title: 'ASP.NET C# Web 開発',
@@ -62,7 +62,7 @@ const useProjects = (): Project[] =>
 					'スターバックス風のキャンペーンLPを HTML / CSS / jQuery だけで再現したテンプレートです。',
 				tech: ['HTML', 'CSS', 'jQuery'],
 				link: 'https://static-sample-lp.onrender.com/',
-				image: '',
+				image: '/img/img_stuba_lp.png',
 			},
 			{
 				title: 'サンプルLP (Next.js)',
@@ -70,7 +70,7 @@ const useProjects = (): Project[] =>
 					'Next.js と TailwindCSS を用いたWeb/ソフトウェア業サンプルのランディングページ。SEOを意識したコーディングと、レスポンシブ対応、アクセシビリティにも配慮。',
 				tech: ['Next.js', 'LP', 'TailwindCSS'],
 				link: 'https://portfolio-rouge-two-50.vercel.app/lp',
-				image: '',
+				image: '/img/img_soft_lp.png',
 			},
 			{
 				title: 'Google Maps JS API',
@@ -202,7 +202,7 @@ export default function Page() {
 								バックエンドエンジニアとしては、
 								PHPやASP.NETC#、C++と多様なプロジェクトに取り組んだ経験もあります。
 								<br />
-								3〜4年のPHPの実務経験を活かし、特にSQLを利用したデータ処理やセキュリティを意識したサーバーサイドのロジック作成の強みもあります。
+								3〜4年のPHPの実務経験を活かし、MVCモデルを活用したスクラッチ開発やSQLを利用したデータ処理やセキュリティを意識したサーバーサイドのロジック作成の強みもあります。
 								<br />
 								フロントエンドエンジニアとしても経験があり、SEOを意識したコーディング、jQueryに加えてReactやNext.jsにも取り組んでいます。(本ページもNext.jsになります。)開発全般に関して広範な知識を深めていくことを目指しています。
 								<br />
@@ -270,14 +270,7 @@ export default function Page() {
 								{/* 疑似サムネイル */}
 								<div className="aspect-video rounded-2xl bg-gradient-to-br from-gray-200 via-gray-100 to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-950 flex items-center justify-center">
 									{p.image ? (
-									<Image
-										src={p.image}
-										alt={p.title}
-										fill
-										className="object-cover"
-										sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-										priority={false}
-									/>
+										<img src={p.image} alt={p.title} className="object-contain w-full h-full rounded-2xl" />
 									) : (
 									<div className="w-full h-full bg-gradient-to-br from-gray-200 via-gray-100 to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-950 flex items-center justify-center">
 										<span className="text-sm text-gray-500 dark:text-gray-400">{p.title}</span>
