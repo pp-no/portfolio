@@ -38,6 +38,13 @@ const useProjects = (): Project[] =>
 				image: '/img/img_next_todo.png',
 			},
 			{
+				title: 'Nuxt.js TODOアプリ',
+				description: 'Nuxt.js を利用した CRUD システム。登録・編集・削除は動作済み。破壊的操作可。個人開発用のため自由に追加・編集・削除して問題ありません。',
+				tech: ['Nuxt.js', 'TypeScript', 'CRUD'],
+				link: 'https://nuxt-todo-wine.vercel.app/',
+				image: '/img/img_nuxt_todo.png',
+			},
+			{
 				title: 'Nuxt.js yahoo記事表示',
 				description: 'Nuxt.js を利用した yahooニュースの最新記事5件表示。',
 				tech: ['Nuxt.js', 'TypeScript', 'RSS'],
