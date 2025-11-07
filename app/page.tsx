@@ -59,14 +59,14 @@ const useProjects = (): Project[] =>
 				link: 'https://my-ssg-site-wcl5.onrender.com/',
 				image: '/img/img_fashion_lp.png',
 			},
-			{
-				title: 'ASP.NET C# Web 開発',
-				description:
-					'ASP.NET C# で初期実装。SQLiteからデータ取得しリスト表示。今後 CRUD 拡張予定。',
-				tech: ['ASP.NET', 'C#', 'SQLite'],
-				link: 'https://github.com/pp-no/my-dotNet-site',
-				image: '',
-			},
+			// {
+			// 	title: 'ASP.NET C# Web 開発',
+			// 	description:
+			// 		'ASP.NET C# で初期実装。SQLiteからデータ取得しリスト表示。今後 CRUD 拡張予定。',
+			// 	tech: ['ASP.NET', 'C#', 'SQLite'],
+			// 	link: 'https://github.com/pp-no/my-dotNet-site',
+			// 	image: '',
+			// },
 			{
 				title: 'サンプルLP',
 				description: 'スターバックス風のキャンペーンLP（HTML / CSS / jQuery）。',
@@ -82,13 +82,13 @@ const useProjects = (): Project[] =>
 				link: 'https://portfolio-rouge-two-50.vercel.app/lp',
 				image: '/img/img_soft_lp.png',
 			},
-			{
-				title: 'Google Maps JS API',
-				description: 'importLibrary + Geocoding + AdvancedMarker。住所検索→地図にマーカー表示。',
-				tech: ['jQuery', 'GoogleMaps'],
-				link: 'https://github.com/pp-no/my-google-map',
-				image: '',
-			},
+			// {
+			// 	title: 'Google Maps JS API',
+			// 	description: 'importLibrary + Geocoding + AdvancedMarker。住所検索→地図にマーカー表示。',
+			// 	tech: ['jQuery', 'GoogleMaps'],
+			// 	link: 'https://github.com/pp-no/my-google-map',
+			// 	image: '',
+			// },
 		],
 		[],
 	);
