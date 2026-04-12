@@ -54,7 +54,7 @@ const useProjects = (): Project[] =>
 			{
 				title: 'ruby on rails ECサイト',
 				description:
-					'AIハーネス設計(planner,generator,evaluater)によるAI連携で、ECサイトの基本機能を実装。商品登録、カート、購入フローを構築。',
+					'AIハーネス設計(planner,generator,evaluater)によるAI連携で、ECサイトの基本機能を実装。商品登録、カート、購入フローを構築。\n※無料ホスティングの都合で、初回アクセス時はスリープ復帰のため数十秒かかる場合があります',
 				tech: ['Ruby', 'Rails', 'EC', 'SQLite', 'AIハーネス'],
 				link: 'https://ruby-on-rails-product.onrender.com/',
 				image: '/img/img_EC_rails.webp',
@@ -385,7 +385,9 @@ export default function Page() {
 							</div>
 
 							<h3 className="mt-4 text-lg font-semibold">{p.title}</h3>
-							<p className="mt-2 text-sm text-gray-600 dark:text-gray-300">{p.description}</p>
+							<p className="mt-2 text-sm whitespace-pre-line text-gray-600 dark:text-gray-300">
+								{p.description}
+							</p>
 
 							<div className="mt-3 flex flex-wrap gap-2">
 								{p.tech.map(t => (
