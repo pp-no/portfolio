@@ -1,19 +1,7 @@
-// app/layout.tsx
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Gtm from './Gtm';
-import { Suspense } from 'react'; // ← 追加
-
-const geistSans = Geist({
-	variable: '--font-geist-sans',
-	subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-	variable: '--font-geist-mono',
-	subsets: ['latin'],
-});
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
 	title: 'ポートフォリオ',
@@ -25,13 +13,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
 	return (
 		<html lang="en">
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-				{/* GTM (JS) は Suspense でラップ */}
+			<body
+				className="antialiased"
+				style={{
+					fontFamily:
+						'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+				}}
+			>
 				<Suspense fallback={null}>
 					<Gtm />
 				</Suspense>
 
-				{/* GTM (noscript) */}
 				{gtmId ? (
 					<noscript>
 						<iframe
