@@ -30,17 +30,17 @@ const useProjects = (): Project[] =>
 	useMemo(
 		() => [
 			{
-				title: 'Next.js Todo アプリ (開発中)',
+				title: 'Next.js Todo アプリ',
 				description:
 					'Next.js を利用した CRUD システム。登録・編集・削除は動作済み。破壊的操作可。個人開発用のため自由に追加・編集・削除して問題ありません。',
-				tech: ['Next.js', 'TypeScript', 'CRUD'],
+				tech: ['Next.js', 'TypeScript', 'CRUD', 'TailwindCSS', 'Vercel', 'CICD'],
 				link: 'https://todo-next-kappa-wheat.vercel.app',
 				image: '/img/img_next_todo.webp',
 			},
 			{
-				title: 'Nuxt.js TODOアプリ',
+				title: 'Nuxt.js  Todo アプリ ',
 				description: 'Nuxt.js を利用した CRUD システム。登録・編集・削除は動作済み。破壊的操作可。個人開発用のため自由に追加・編集・削除して問題ありません。',
-				tech: ['Nuxt.js', 'TypeScript', 'CRUD'],
+				tech: ['Nuxt.js', 'TypeScript', 'CRUD', 'TailwindCSS', 'Vercel', 'CICD'],
 				link: 'https://nuxt-todo-wine.vercel.app/',
 				image: '/img/img_nuxt_todo.webp',
 			},
@@ -310,7 +310,7 @@ export default function Page() {
 							</p>
 							<div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
 								{[
-									{ k: '品質', v: 'AIと連携しバグの少なさとテスト' },
+									{ k: '品質', v: 'AIを活用したバグの少ない実装とテスト' },
 									{ k: '速度', v: '過剰設計を避けた実装' },
 									{ k: '継続', v: '運用しやすさと改善' },
 								].map(item => (
