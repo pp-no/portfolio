@@ -146,7 +146,6 @@ export default function Page() {
 				{/* 見出しの可読性を保つため、左から右へ抜ける暗いオーバーレイを重ねる。 */}
 				<div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,17,21,0.94)_0%,rgba(15,17,21,0.88)_32%,rgba(15,17,21,0.72)_48%,rgba(15,17,21,0.38)_68%,rgba(15,17,21,0.16)_100%)] sm:bg-[linear-gradient(90deg,rgba(15,17,21,0.9)_0%,rgba(15,17,21,0.84)_28%,rgba(15,17,21,0.52)_44%,rgba(15,17,21,0.18)_62%,rgba(15,17,21,0.08)_100%)]" />
 				<div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(9,11,15,0.6),rgba(9,11,15,0.22)_36%,rgba(9,11,15,0.12)_100%)] sm:bg-[linear-gradient(to_top,rgba(9,11,15,0.45),rgba(9,11,15,0.1)_34%,rgba(9,11,15,0.08)_100%)]" />
-				<div className="absolute inset-y-0 left-[56%] hidden w-px bg-white/10 lg:block" />
 
 				<header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-5 py-6 lg:px-10">
 					<a href="#home" className="flex items-center gap-3 text-sm tracking-[0.22em] text-white/90">
