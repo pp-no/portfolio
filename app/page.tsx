@@ -184,7 +184,6 @@ export default function Page() {
 						variants={stagger}
 					>
 						{/* 画面幅が広い時だけ縦線を出して、左側に重心を作る。 */}
-						<div className="absolute bottom-12 left-0 hidden h-24 w-px bg-white/16 lg:block" />
 						<motion.p variants={fadeUp} className="text-sm uppercase tracking-[0.38em] text-white/50">
 							Web Engineer
 						</motion.p>
