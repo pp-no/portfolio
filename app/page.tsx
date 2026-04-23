@@ -25,6 +25,7 @@ interface Project {
 	image?: string;
 }
 
+// 自己紹介文は JSX から切り出して、文面調整時に構造へ触れなくて済むようにする。
 const profileParagraphs = [
 	'バックエンドエンジニアとしては、PHPやASP.NETC#、C++と多様なプロジェクトに取り組んだ経験もあります。',
 	'3〜4年のPHPの実務経験を活かし、MVCモデルを活用したスクラッチ開発やSQLを利用したデータ処理やセキュリティを意識したサーバーサイドのロジック作成の強みもあります。',
@@ -62,6 +63,7 @@ const valueCards = [
 	{ k: '継続', v: '運用しやすさと改善' },
 ];
 
+// 制作物一覧は表示コンポーネント内でのみ使うため、軽いローカルフックとして閉じ込める。
 const useProjects = (): Project[] =>
 	useMemo(
 		() => [
@@ -113,6 +115,7 @@ const useProjects = (): Project[] =>
 		[],
 	);
 
+// セクション見出しの小ラベルは全体で見た目を統一する。
 function SectionLabel({ children }: { children: React.ReactNode }) {
 	return (
 		<div className="flex items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#9f8967]">
@@ -131,6 +134,7 @@ export default function Page() {
 				id="home"
 				className="relative overflow-hidden bg-[#181b20] text-white"
 			>
+				{/* モバイルでは机とモニターが残るように少し右寄せでトリミングする。 */}
 				<Image
 					src="/img/img_portfolio_kv.webp"
 					alt="ポートフォリオのビジュアル"
@@ -139,6 +143,7 @@ export default function Page() {
 					className="object-cover object-[68%_center] sm:object-[62%_center] lg:object-center"
 					sizes="100vw"
 				/>
+				{/* 見出しの可読性を保つため、左から右へ抜ける暗いオーバーレイを重ねる。 */}
 				<div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,17,21,0.94)_0%,rgba(15,17,21,0.88)_32%,rgba(15,17,21,0.72)_48%,rgba(15,17,21,0.38)_68%,rgba(15,17,21,0.16)_100%)] sm:bg-[linear-gradient(90deg,rgba(15,17,21,0.9)_0%,rgba(15,17,21,0.84)_28%,rgba(15,17,21,0.52)_44%,rgba(15,17,21,0.18)_62%,rgba(15,17,21,0.08)_100%)]" />
 				<div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(9,11,15,0.6),rgba(9,11,15,0.22)_36%,rgba(9,11,15,0.12)_100%)] sm:bg-[linear-gradient(to_top,rgba(9,11,15,0.45),rgba(9,11,15,0.1)_34%,rgba(9,11,15,0.08)_100%)]" />
 				<div className="absolute inset-y-0 left-[56%] hidden w-px bg-white/10 lg:block" />
@@ -178,6 +183,7 @@ export default function Page() {
 						animate="visible"
 						variants={stagger}
 					>
+						{/* 画面幅が広い時だけ縦線を出して、左側に重心を作る。 */}
 						<div className="absolute bottom-12 left-0 hidden h-24 w-px bg-white/16 lg:block" />
 						<motion.p variants={fadeUp} className="text-sm uppercase tracking-[0.38em] text-white/50">
 							Web Engineer
@@ -219,6 +225,7 @@ export default function Page() {
 			</section>
 
 			<main>
+				{/* About は実写の代わりにタイポ中心のカードで静かなトーンを維持する。 */}
 				<section id="about" className="px-5 py-20 lg:px-10 lg:py-24">
 					<div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[minmax(320px,0.9fr)_minmax(0,1.1fr)]">
 						<motion.div
@@ -362,6 +369,7 @@ export default function Page() {
 										) : null}
 										<div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(10,13,20,0.46),transparent_40%)]" />
 									</div>
+									{/* 本文量が違っても CTA が PC で左下に揃うように縦方向へ伸ばす。 */}
 									<div className="flex flex-1 flex-col p-6">
 										<div className="text-[11px] uppercase tracking-[0.28em] text-[#d5b37c]">Project</div>
 										<h3 className="mt-3 text-xl font-semibold leading-8">{project.title}</h3>
