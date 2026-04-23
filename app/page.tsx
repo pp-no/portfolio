@@ -1,23 +1,22 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
-import { Mail, Moon, Sun, ArrowRight } from 'lucide-react';
-import { SiGithub } from 'react-icons/si';
+import React, { useMemo } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { ArrowRight, Mail, Monitor, PenTool, SquareCode, Workflow } from 'lucide-react';
+import { SiGithub } from 'react-icons/si';
 
-// ===== アニメーション設定 =====
 const fadeUp = {
-	hidden: { opacity: 0, y: 16 },
-	visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' as const } },
+	hidden: { opacity: 0, y: 18 },
+	visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
 };
-const fade = {
-	hidden: { opacity: 0 },
-	visible: { opacity: 1, transition: { duration: 0.45, ease: 'easeOut' as const } },
-};
-const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
 
-// ===== 型定義 =====
+const stagger = {
+	visible: {
+		transition: { staggerChildren: 0.08 },
+	},
+};
+
 interface Project {
 	title: string;
 	description: string;
@@ -25,6 +24,43 @@ interface Project {
 	link?: string;
 	image?: string;
 }
+
+const profileParagraphs = [
+	'バックエンドエンジニアとしては、PHPやASP.NETC#、C++と多様なプロジェクトに取り組んだ経験もあります。',
+	'3〜4年のPHPの実務経験を活かし、MVCモデルを活用したスクラッチ開発やSQLを利用したデータ処理やセキュリティを意識したサーバーサイドのロジック作成の強みもあります。',
+	'フロントエンドエンジニアとしても経験があり、SEOを意識したコーディング、jQueryに加えてReactやNext.jsにも取り組んでいます。(本ページもNext.jsになります。)開発全般に関して広範な知識を深めていくことを目指しています。',
+	'今後は、メインとしてフロントエンドを中心に業務に携わりますが、バックエンドの知識や技術もありますので適材適所でフルスタック対応も可能です。',
+	'新しい技術や開発手法を積極的に取り入れ、より良いシステムを作り上げるために努力を惜しまない所存です。これからの成長を通じて、より多くのプロジェクトに貢献できることを楽しみにしています。',
+];
+
+const capabilityCards = [
+	{
+		title: 'フロントエンド',
+		description: 'HTML / SASS（CSS） / JavaScript',
+		icon: Monitor,
+	},
+	{
+		title: 'バックエンド',
+		description: 'PHP / ASP.NET C# / C++',
+		icon: Workflow,
+	},
+	{
+		title: 'モダン開発',
+		description: 'jQuery / React / Next.js / TypeScript',
+		icon: SquareCode,
+	},
+	{
+		title: '改善対応',
+		description: 'Node.js / TailwindCSS / REST / リファクタリング / パフォーマンス最適化',
+		icon: PenTool,
+	},
+];
+
+const valueCards = [
+	{ k: '品質', v: 'AIを活用したバグの少ない実装とテスト' },
+	{ k: '速度', v: '過剰設計を避けた実装' },
+	{ k: '継続', v: '運用しやすさと改善' },
+];
 
 const useProjects = (): Project[] =>
 	useMemo(
@@ -59,14 +95,6 @@ const useProjects = (): Project[] =>
 				link: 'https://ruby-on-rails-product.onrender.com/',
 				image: '/img/img_EC_rails.webp',
 			},
-			// {
-			// 	title: 'ASP.NET C# Web 開発',
-			// 	description:
-			// 		'ASP.NET C# で初期実装。SQLiteからデータ取得しリスト表示。今後 CRUD 拡張予定。',
-			// 	tech: ['ASP.NET', 'C#', 'SQLite'],
-			// 	link: 'https://github.com/pp-no/my-dotNet-site',
-			// 	image: '',
-			// },
 			{
 				title: 'サンプルLP',
 				description: 'スターバックス風のキャンペーンLP（HTML / CSS / jQuery）。',
@@ -76,376 +104,333 @@ const useProjects = (): Project[] =>
 			},
 			{
 				title: 'サンプルLP (Next.js)',
-				description:
-					'Next.js + TailwindCSS のLP。SEO/レスポンシブ/アクセシビリティを意識して実装。',
+				description: 'Next.js + TailwindCSS のLP。SEO/レスポンシブ/アクセシビリティを意識して実装。',
 				tech: ['Next.js', 'LP', 'TailwindCSS'],
 				link: 'https://portfolio-rouge-two-50.vercel.app/lp',
 				image: '/img/img_soft_lp.webp',
 			},
-			// {
-			// 	title: 'Google Maps JS API',
-			// 	description: 'importLibrary + Geocoding + AdvancedMarker。住所検索→地図にマーカー表示。',
-			// 	tech: ['jQuery', 'GoogleMaps'],
-			// 	link: 'https://github.com/pp-no/my-google-map',
-			// 	image: '',
-			// },
 		],
 		[],
 	);
 
+function SectionLabel({ children }: { children: React.ReactNode }) {
+	return (
+		<div className="flex items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#9f8967]">
+			<span>{children}</span>
+			<span className="h-px w-16 bg-[#c8bbab]" />
+		</div>
+	);
+}
+
 export default function Page() {
 	const projects = useProjects();
 
-	// --- Hydration-safe テーマ制御 ---
-	// SSR/初回は必ず light で描画（サーバHTMLと一致させる）
-	const [mounted, setMounted] = useState(false);
-	const [dark, setDark] = useState(false);
-
-	// 初回マウント後にだけ保存値/OS設定を反映
-	useEffect(() => {
-		try {
-			const saved = localStorage.getItem('theme');
-			const initial =
-				saved === 'dark'
-					? true
-					: saved === 'light'
-					? false
-					: window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
-
-			setDark(initial);
-
-			const root = document.documentElement;
-			root.classList.toggle('dark', initial);
-			root.style.colorScheme = initial ? 'dark' : 'light';
-		} catch {}
-		setMounted(true);
-	}, []);
-
-	// 以降のトグル変更を反映
-	useEffect(() => {
-		if (!mounted) return;
-		const root = document.documentElement;
-		root.classList.toggle('dark', dark);
-		root.style.colorScheme = dark ? 'dark' : 'light';
-		try {
-			localStorage.setItem('theme', dark ? 'dark' : 'light');
-		} catch {}
-	}, [dark, mounted]);
-
 	return (
-		<div className="min-h-screen bg-white text-gray-900 antialiased scroll-smooth dark:bg-gray-950 dark:text-gray-100">
-			{/* ===== ナビゲーション ===== */}
-			<header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/80 dark:supports-[backdrop-filter]:bg-gray-950/60 dark:bg-gray-950/70 border-b border-gray-200 dark:border-gray-800">
-				<div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-					<a href="#home" className="font-semibold tracking-tight text-lg">
-						oki<span className="text-primary">.</span>portfolio
+		<div className="min-h-screen bg-[#efebe5] text-[#1f2330] antialiased">
+			<section
+				id="home"
+				className="relative overflow-hidden bg-[#181b20] text-white"
+			>
+				<Image
+					src="/img/img_portfolio_kv.webp"
+					alt="ポートフォリオのビジュアル"
+					fill
+					priority
+					className="object-cover object-[68%_center] sm:object-[62%_center] lg:object-center"
+					sizes="100vw"
+				/>
+				<div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,17,21,0.94)_0%,rgba(15,17,21,0.88)_32%,rgba(15,17,21,0.72)_48%,rgba(15,17,21,0.38)_68%,rgba(15,17,21,0.16)_100%)] sm:bg-[linear-gradient(90deg,rgba(15,17,21,0.9)_0%,rgba(15,17,21,0.84)_28%,rgba(15,17,21,0.52)_44%,rgba(15,17,21,0.18)_62%,rgba(15,17,21,0.08)_100%)]" />
+				<div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(9,11,15,0.6),rgba(9,11,15,0.22)_36%,rgba(9,11,15,0.12)_100%)] sm:bg-[linear-gradient(to_top,rgba(9,11,15,0.45),rgba(9,11,15,0.1)_34%,rgba(9,11,15,0.08)_100%)]" />
+				<div className="absolute inset-y-0 left-[56%] hidden w-px bg-white/10 lg:block" />
+
+				<header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-5 py-6 lg:px-10">
+					<a href="#home" className="flex items-center gap-3 text-sm tracking-[0.22em] text-white/90">
+						<span className="text-3xl font-bold tracking-tight">OKI.</span>
+						<span className="text-base tracking-[0.18em]">Portfolio</span>
 					</a>
-					<nav className="hidden sm:flex items-center gap-6 text-sm">
-						{[
-							{ href: '#about', label: 'About' },
-							{ href: '#work', label: 'Work' },
-							{ href: '#contact', label: 'Contact' },
-						].map(item => (
-							<a
-								key={item.href}
-								href={item.href}
-								className="relative hover:opacity-100 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-gradient-to-r after:from-indigo-500 after:to-cyan-500 after:transition-[width] after:duration-300 hover:after:w-full opacity-90"
-							>
-								{item.label}
+
+					<div className="flex items-center gap-3">
+						<nav className="hidden items-center gap-8 rounded-full border border-white/10 bg-white/68 px-8 py-4 text-sm font-medium text-[#242831] backdrop-blur lg:flex">
+							<a href="#about" className="transition hover:text-[#b99761]">
+								About
 							</a>
-						))}
-
+							<a href="#work" className="transition hover:text-[#b99761]">
+								Works
+							</a>
+							<a href="#contact" className="transition hover:text-[#b99761]">
+								Contact
+							</a>
+						</nav>
 						<a
-							className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900 transition"
-							href="https://github.com/pp-no"
-							target="_blank"
-							rel="noreferrer"
-							aria-label="GitHub"
-						>
-							<SiGithub className="h-4 w-4" />
-							<span className="hidden md:inline">GitHub</span>
-						</a>
-
-						<button
-							type="button"
-							className="inline-flex items-center justify-center h-9 w-9 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
-							onClick={() => setDark(v => !v)}
-							aria-label="Toggle theme"
-							title="Toggle theme"
-							suppressHydrationWarning
-						>
-							{/* マウント前は Moon 固定で描画差分を回避 */}
-							{mounted ? (
-								dark ? (
-									<Sun className="h-4 w-4" />
-								) : (
-									<Moon className="h-4 w-4" />
-								)
-							) : (
-								<Moon className="h-4 w-4" />
-							)}
-						</button>
-					</nav>
-				</div>
-			</header>
-
-			{/* ===== Hero ===== */}
-			<section id="home" className="relative overflow-hidden">
-				{/* 背景のグラデーション装飾 */}
-				<div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-					<motion.div
-						className="absolute -top-32 left-1/2 h-80 w-[42rem] -translate-x-1/2 rounded-full blur-3xl opacity-40 bg-gradient-to-tr from-indigo-400 via-sky-400 to-cyan-400 dark:from-indigo-600 dark:via-sky-700 dark:to-cyan-700"
-						initial={{ scale: 0.95, rotate: 0 }}
-						animate={{ scale: 1, rotate: 6 }}
-						transition={{ duration: 12, repeat: Infinity, repeatType: 'reverse', ease: 'linear' }}
-					/>
-				</div>
-
-				<div className="mx-auto max-w-6xl px-4 py-20 sm:py-28">
-					<motion.p
-						className="text-sm font-medium tracking-widest text-gray-600 dark:text-gray-400 uppercase"
-						variants={fade}
-						initial="hidden"
-						whileInView="visible"
-						viewport={{ once: true, margin: '-10% 0px' }}
-					>
-						Web Engineer
-					</motion.p>
-
-					<motion.h1
-						className="mt-3 text-4xl font-bold leading-tight sm:text-6xl"
-						variants={fadeUp}
-						initial="hidden"
-						whileInView="visible"
-						viewport={{ once: true }}
-					>
-						ウェブ開発のプロ
-						<span className="block bg-gradient-to-r from-indigo-500 to-cyan-500 bg-clip-text text-transparent">
-							5年以上の経験で安心サポート！
-						</span>
-					</motion.h1>
-
-					<motion.p
-						className="mt-6 max-w-2xl text-base sm:text-lg text-gray-600 dark:text-gray-300"
-						variants={fadeUp}
-						initial="hidden"
-						whileInView="visible"
-						viewport={{ once: true }}
-					>
-						SE、Web業務と比較的Web開発の経験が多く、フルスタックの経験もあり！
-					</motion.p>
-
-					<motion.div
-						className="mt-8 flex flex-wrap gap-3"
-						variants={stagger}
-						initial="hidden"
-						whileInView="visible"
-						viewport={{ once: true }}
-					>
-						<motion.a
-							variants={fadeUp}
-							href="#work"
-							className="group inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-gray-900 text-white dark:bg-white dark:text-gray-900 hover:opacity-90"
-							whileHover={{ y: -2 }}
-							whileTap={{ scale: 0.98 }}
-						>
-							個人制作物を見る
-							<ArrowRight className="h-4 w-4 transition -rotate-45 group-hover:rotate-0 group-hover:translate-x-0.5" />
-						</motion.a>
-
-						<motion.a
-							variants={fadeUp}
 							href="#contact"
-							className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold border border-gray-300 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900"
-							whileHover={{ y: -2 }}
-							whileTap={{ scale: 0.98 }}
+							className="inline-flex h-14 items-center gap-3 rounded-full bg-[#11141a] px-6 text-sm font-semibold text-white ring-1 ring-white/10 transition hover:bg-[#242933]"
 						>
-							お問い合わせ
-						</motion.a>
-					</motion.div>
-				</div>
-			</section>
-
-			{/* ===== About ===== */}
-			<section id="about" className="mx-auto max-w-6xl px-4 py-16 sm:py-20">
-				<motion.div
-					className="grid grid-cols-1 gap-10 sm:grid-cols-5"
-					variants={stagger}
-					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true, margin: '-10% 0px' }}
-				>
-					<motion.div className="sm:col-span-2" variants={fadeUp}>
-						<h2 className="text-2xl font-bold sm:text-3xl relative inline-block">
-							自己紹介
-							<span className="absolute left-0 -bottom-2 h-[3px] w-16 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-full" />
-						</h2>
-						<p className="mt-3 text-gray-600 dark:text-gray-300">
-							バックエンドエンジニアとしては、
-							PHPやASP.NETC#、C++と多様なプロジェクトに取り組んだ経験もあります。
-							<br />
-							3〜4年のPHPの実務経験を活かし、MVCモデルを活用したスクラッチ開発やSQLを利用したデータ処理やセキュリティを意識したサーバーサイドのロジック作成の強みもあります。
-							<br />
-							フロントエンドエンジニアとしても経験があり、SEOを意識したコーディング、jQueryに加えてReactやNext.jsにも取り組んでいます。(本ページもNext.jsになります。)開発全般に関して広範な知識を深めていくことを目指しています。
-							<br />
-							今後は、メインとしてフロントエンドを中心に業務に携わりますが、バックエンドの知識や技術もありますので適材適所でフルスタック対応も可能です。
-							<br />
-							新しい技術や開発手法を積極的に取り入れ、より良いシステムを作り上げるために努力を惜しまない所存です。これからの成長を通じて、より多くのプロジェクトに貢献できることを楽しみにしています。
-						</p>
-						<ul className="mt-6 space-y-2 text-sm text-gray-600 dark:text-gray-300">
-							<li>経験例：</li>
-							<li>・HTML / SASS（CSS） / JavaScript</li>
-							<li>・PHP / ASP.NET C# / C++</li>
-							<li>・jQuery / React / Next.js / TypeScript</li>
-							<li>・Node.js / TailwindCSS / REST</li>
-							<li>・リファクタリング / パフォーマンス最適化</li>
-						</ul>
-					</motion.div>
-
-					<motion.div className="sm:col-span-3" variants={fadeUp}>
-						<div className="rounded-3xl border border-gray-200 dark:border-gray-800 p-6 bg-white/70 dark:bg-gray-900/50">
-							<h3 className="font-semibold">価値観</h3>
-							<p className="mt-2 text-gray-600 dark:text-gray-300 text-sm">
-								小さく作って素早く届ける。SEOを意識した可読性の高いコード、堅牢なエラーハンドリング、段階的な導入でプロダクトを安定させます。
-							</p>
-							<div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
-								{[
-									{ k: '品質', v: 'AIを活用したバグの少ない実装とテスト' },
-									{ k: '速度', v: '過剰設計を避けた実装' },
-									{ k: '継続', v: '運用しやすさと改善' },
-								].map(item => (
-									<div
-										key={item.k}
-										className="rounded-2xl border border-gray-200 dark:border-gray-800 p-4 transition hover:-translate-y-0.5 hover:shadow-sm"
-									>
-										<div className="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400">
-											{item.k}
-										</div>
-										<div className="mt-1 font-medium">{item.v}</div>
-									</div>
-								))}
-							</div>
-						</div>
-					</motion.div>
-				</motion.div>
-			</section>
-
-			{/* ===== Work ===== */}
-			<section id="work" className="mx-auto max-w-6xl px-4 py-16 sm:py-20">
-				<div className="flex items-end justify-between gap-4">
-					<div>
-						<h2 className="text-2xl font-bold sm:text-3xl relative inline-block">
-							個人制作物
-							<span className="absolute left-0 -bottom-2 h-[3px] w-16 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-full" />
-						</h2>
-						<p className="mt-2 text-gray-600 dark:text-gray-300 text-sm">
-							最近の個人製作物の取り組みを抜粋しています。 ※実務経験は別途資料で送付いたします。
-						</p>
+							Contact
+							<ArrowRight className="h-4 w-4" />
+						</a>
 					</div>
-				</div>
+				</header>
 
-				<motion.div
-					className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-					variants={stagger}
-					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true, margin: '-10% 0px' }}
-				>
-					{projects.map(p => (
-						<motion.a
-							key={p.title}
-							href={p.link}
-							target="_blank"
-							rel="noreferrer"
-							className="group relative overflow-hidden rounded-3xl border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-gray-900/50 p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 block"
+				<div className="relative z-10 mx-auto max-w-7xl px-5 pb-18 pt-6 lg:px-10 lg:pb-28 lg:pt-10">
+					<motion.div
+						className="relative flex min-h-[540px] max-w-[58rem] flex-col justify-center px-1 py-12 sm:min-h-[620px] sm:px-4 sm:py-14 lg:min-h-[700px] lg:px-0"
+						initial="hidden"
+						animate="visible"
+						variants={stagger}
+					>
+						<div className="absolute bottom-12 left-0 hidden h-24 w-px bg-white/16 lg:block" />
+						<motion.p variants={fadeUp} className="text-sm uppercase tracking-[0.38em] text-white/50">
+							Web Engineer
+						</motion.p>
+						<motion.h1
 							variants={fadeUp}
-							whileHover={{ y: -6, scale: 1.005 }}
-							whileTap={{ scale: 0.995 }}
+							className="mt-8 text-4xl font-semibold leading-[1.35] sm:text-5xl lg:text-[4.4rem]"
 						>
-							{/* サムネ */}
-							<div className="aspect-video relative overflow-hidden rounded-2xl">
-								{p.image ? (
-									<Image
-										src={p.image}
-										alt={p.title}
-										fill
-										className="object-contain transition-transform duration-500 ease-out group-hover:scale-105"
-										sizes="(min-width:1280px) 360px, (min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
-										priority={false}
-									/>
-								) : (
-									<div className="w-full h-full bg-gradient-to-br from-gray-200 via-gray-100 to-white dark:from-gray-800 dark:via-gray-900 dark:to-cyan-950 flex items-center justify-center">
-										<span className="text-sm text-gray-500 dark:text-gray-400">{p.title}</span>
+							ウェブ開発のプロ
+							<span className="text-[#c9b08b]">5年以上の経験</span>
+							で安心サポート！
+						</motion.h1>
+						<motion.p
+							variants={fadeUp}
+							className="mt-8 max-w-2xl text-base leading-8 text-white/72 sm:text-lg"
+						>
+							SE、Web業務と比較的Web開発の経験が多く、フルスタックの経験もあり！
+						</motion.p>
+						<motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-4">
+							<a
+								href="#work"
+								className="inline-flex min-h-14 items-center gap-3 rounded-full border border-[#bda17b] px-7 text-sm font-semibold text-white transition hover:bg-white hover:text-[#171c27]"
+							>
+								個人制作物を見る
+								<ArrowRight className="h-4 w-4" />
+							</a>
+							<a
+								href="https://github.com/pp-no"
+								target="_blank"
+								rel="noreferrer"
+								className="inline-flex min-h-14 items-center gap-3 rounded-full border border-white/10 px-6 text-sm font-semibold text-white/86 transition hover:border-white/24 hover:bg-white/6"
+							>
+								<SiGithub className="h-4 w-4" />
+								GitHub
+							</a>
+						</motion.div>
+					</motion.div>
+				</div>
+			</section>
+
+			<main>
+				<section id="about" className="px-5 py-20 lg:px-10 lg:py-24">
+					<div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[minmax(320px,0.9fr)_minmax(0,1.1fr)]">
+						<motion.div
+							className="relative overflow-hidden rounded-[30px] bg-[#d8d1c6] p-6 sm:p-8"
+							initial="hidden"
+							whileInView="visible"
+							viewport={{ once: true, margin: '-10% 0px' }}
+							variants={fadeUp}
+						>
+							<div className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-[linear-gradient(140deg,#2f3748_0%,#181d27_62%,#10131a_100%)] shadow-[0_28px_80px_rgba(17,21,33,0.22)]">
+								<div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(255,255,255,0.1),transparent_26%),linear-gradient(to_top,rgba(0,0,0,0.24),transparent_40%)]" />
+								<div className="absolute left-8 top-8 text-sm uppercase tracking-[0.3em] text-white/45">
+									About Me
+								</div>
+								<div className="absolute bottom-10 left-8 right-8">
+									<div className="text-[96px] font-semibold leading-none text-white/92 sm:text-[128px]">OKI</div>
+									<div className="mt-4 max-w-[14rem] text-sm leading-7 text-white/65">
+										Web / Frontend / Backend / Full Stack
 									</div>
-								)}
-								{/* 軽いグロー */}
-								<div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition">
-									<div className="absolute -inset-[30%] bg-gradient-to-tr from-indigo-400/10 via-sky-400/10 to-cyan-400/10 blur-2xl" />
+								</div>
+								<div className="absolute bottom-8 right-6 rotate-[-8deg] text-6xl font-light text-[#c9b08b] opacity-90 sm:text-7xl">
+									.
 								</div>
 							</div>
+						</motion.div>
 
-							<h3 className="mt-4 text-lg font-semibold">{p.title}</h3>
-							<p className="mt-2 text-sm whitespace-pre-line text-gray-600 dark:text-gray-300">
-								{p.description}
-							</p>
+						<div className="grid gap-10">
+							<motion.div
+								initial="hidden"
+								whileInView="visible"
+								viewport={{ once: true, margin: '-10% 0px' }}
+								variants={stagger}
+							>
+								<motion.div variants={fadeUp}>
+									<SectionLabel>About</SectionLabel>
+									<h2 className="mt-6 text-3xl font-semibold leading-[1.6] text-[#171c27] sm:text-4xl">
+										自己紹介
+									</h2>
+								</motion.div>
+								<div className="mt-8 space-y-4 text-[15px] leading-8 text-[#343949]">
+									{profileParagraphs.map(paragraph => (
+										<motion.p key={paragraph} variants={fadeUp}>
+											{paragraph}
+										</motion.p>
+									))}
+								</div>
+							</motion.div>
 
-							<div className="mt-3 flex flex-wrap gap-2">
-								{p.tech.map(t => (
-									<span
-										key={t}
-										className="text-xs rounded-full border border-gray-300 dark:border-gray-700 px-2.5 py-1 text-gray-700 dark:text-gray-300 transition hover:-translate-y-0.5"
-									>
-										{t}
-									</span>
-								))}
-							</div>
-						</motion.a>
-					))}
-				</motion.div>
-			</section>
+							<motion.div
+								className="grid gap-4 md:grid-cols-2"
+								initial="hidden"
+								whileInView="visible"
+								viewport={{ once: true }}
+								variants={stagger}
+							>
+								{capabilityCards.map(item => {
+									const Icon = item.icon;
+									return (
+										<motion.div
+											key={item.title}
+											variants={fadeUp}
+											className="rounded-[24px] border border-[#d5cec2] bg-white/75 p-6 shadow-[0_18px_40px_rgba(24,29,39,0.04)]"
+										>
+											<div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#d7c19a] bg-[#f8f3ea] text-[#171c27]">
+												<Icon className="h-5 w-5" />
+											</div>
+											<h3 className="mt-5 text-lg font-semibold text-[#171c27]">{item.title}</h3>
+											<p className="mt-3 text-sm leading-7 text-[#555b6c]">{item.description}</p>
+										</motion.div>
+									);
+								})}
+							</motion.div>
 
-			{/* ===== Contact ===== */}
-			<section id="contact" className="mx-auto max-w-6xl px-4 py-16 sm:py-20">
-				<motion.div
-					className="rounded-3xl border border-gray-200 dark:border-gray-800 p-8 sm:p-12 text-center bg-white/70 dark:bg-gray-900/50"
-					variants={fadeUp}
-					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true }}
-				>
-					<h2 className="text-2xl font-bold sm:text-3xl">お問い合わせ</h2>
-					<p className="mt-3 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-						業務委託・副業・スポット相談などお気軽に。GitHub やメールからご連絡ください。
-					</p>
-					<div className="mt-6 flex flex-wrap justify-center gap-3">
-						<motion.a
-							href={`mailto:onryki.work@gmail.com?subject=${encodeURIComponent(
-								'お問い合わせ（ポートフォリオLP）',
-							)}&body=${encodeURIComponent('お名前：\nご用件：\n')}`}
-							className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-gray-900 text-white dark:bg-white dark:text-gray-900 hover:opacity-90"
-							whileHover={{ y: -2 }}
-							whileTap={{ scale: 0.98 }}
-						>
-							<Mail className="h-4 w-4" /> メールで相談する
-						</motion.a>
-
-						<motion.a
-							href="https://github.com/pp-no"
-							target="_blank"
-							rel="noreferrer"
-							className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold border border-gray-300 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900"
-							whileHover={{ y: -2 }}
-							whileTap={{ scale: 0.98 }}
-						>
-							<SiGithub className="h-4 w-4" /> GitHub を見る
-						</motion.a>
+							<motion.div
+								className="rounded-[28px] border border-[#d5cec2] bg-[#171c27] p-7 text-white"
+								initial="hidden"
+								whileInView="visible"
+								viewport={{ once: true }}
+								variants={fadeUp}
+							>
+								<p className="text-sm leading-8 text-white/74">
+									小さく作って素早く届ける。SEOを意識した可読性の高いコード、堅牢なエラーハンドリング、段階的な導入でプロダクトを安定させます。
+								</p>
+								<div className="mt-6 grid gap-3 sm:grid-cols-3">
+									{valueCards.map(item => (
+										<div key={item.k} className="rounded-[20px] border border-white/10 bg-white/5 px-5 py-4">
+											<div className="text-[11px] uppercase tracking-[0.28em] text-[#d5b37c]">{item.k}</div>
+											<div className="mt-2 text-sm leading-6 text-white/82">{item.v}</div>
+										</div>
+									))}
+								</div>
+							</motion.div>
+						</div>
 					</div>
-				</motion.div>
-			</section>
+				</section>
 
-			{/* ===== フッター ===== */}
-			<footer className="py-10 text-center text-xs text-gray-500 dark:text-gray-400">
-				{/* 年が年末年始の瞬間でズレても警告を出さないよう保険 */}
+				<section id="work" className="bg-[#171c27] px-5 py-20 text-white lg:px-10 lg:py-24">
+					<div className="mx-auto max-w-7xl">
+						<div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+							<div>
+								<SectionLabel>Works</SectionLabel>
+								<h2 className="mt-6 text-3xl font-semibold sm:text-4xl">個人制作物</h2>
+								<p className="mt-4 max-w-2xl text-sm leading-7 text-white/66">
+									最近の個人製作物の取り組みを抜粋しています。 ※実務経験は別途資料で送付いたします。
+								</p>
+							</div>
+							<a
+								href="#contact"
+								className="inline-flex min-h-14 items-center gap-3 self-start rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition hover:bg-white hover:text-[#171c27]"
+							>
+								お問い合わせ
+								<ArrowRight className="h-4 w-4" />
+							</a>
+						</div>
+
+						<motion.div
+							className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3"
+							initial="hidden"
+							whileInView="visible"
+							viewport={{ once: true, margin: '-10% 0px' }}
+							variants={stagger}
+						>
+							{projects.map(project => (
+								<motion.a
+									key={project.title}
+									href={project.link}
+									target="_blank"
+									rel="noreferrer"
+									variants={fadeUp}
+									className="group flex h-full flex-col overflow-hidden rounded-[24px] border border-white/12 bg-white/4 transition duration-300 hover:-translate-y-1 hover:border-[#d5b37c]/60 hover:bg-white/7"
+								>
+									<div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-white/4">
+										{project.image ? (
+											<Image
+												src={project.image}
+												alt={project.title}
+												fill
+												className="object-cover transition duration-500 group-hover:scale-105"
+												sizes="(min-width:1280px) 30vw, (min-width:768px) 50vw, 100vw"
+											/>
+										) : null}
+										<div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(10,13,20,0.46),transparent_40%)]" />
+									</div>
+									<div className="flex flex-1 flex-col p-6">
+										<div className="text-[11px] uppercase tracking-[0.28em] text-[#d5b37c]">Project</div>
+										<h3 className="mt-3 text-xl font-semibold leading-8">{project.title}</h3>
+										<p className="mt-3 whitespace-pre-line text-sm leading-7 text-white/68">
+											{project.description}
+										</p>
+										<div className="mt-5 flex flex-wrap gap-2">
+											{project.tech.map(tech => (
+												<span
+													key={tech}
+													className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-white/74"
+												>
+													{tech}
+												</span>
+											))}
+										</div>
+										<div className="mt-6 flex items-center gap-3 text-sm font-semibold text-[#d5b37c] md:mt-auto md:pt-8">
+											<span>詳細を見る</span>
+											<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+										</div>
+									</div>
+								</motion.a>
+							))}
+						</motion.div>
+					</div>
+				</section>
+
+				<section id="contact" className="px-5 py-20 lg:px-10 lg:py-24">
+					<motion.div
+						className="mx-auto grid max-w-7xl gap-8 rounded-[34px] bg-[linear-gradient(135deg,#171c27_0%,#232a38_100%)] px-7 py-8 text-white shadow-[0_24px_70px_rgba(20,24,34,0.16)] sm:px-10 sm:py-10 lg:grid-cols-[88px_minmax(0,1fr)_auto] lg:items-center"
+						initial="hidden"
+						whileInView="visible"
+						viewport={{ once: true }}
+						variants={fadeUp}
+					>
+						<div className="flex h-20 w-20 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/14">
+							<Mail className="h-9 w-9" />
+						</div>
+						<div>
+							<h2 className="text-2xl font-semibold leading-10 sm:text-3xl">お問い合わせ</h2>
+							<p className="mt-3 max-w-2xl text-sm leading-7 text-white/70">
+								業務委託・副業・スポット相談などお気軽に。GitHub やメールからご連絡ください。
+							</p>
+						</div>
+						<div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+							<a
+								href={`mailto:onryki.work@gmail.com?subject=${encodeURIComponent(
+									'お問い合わせ（ポートフォリオLP）',
+								)}&body=${encodeURIComponent('お名前：\nご用件：\n')}`}
+								className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-[#d5b37c] px-7 text-sm font-semibold text-[#171c27] transition hover:bg-[#e2c38f]"
+							>
+								メールで相談する
+								<ArrowRight className="h-4 w-4" />
+							</a>
+							<a
+								href="https://github.com/pp-no"
+								target="_blank"
+								rel="noreferrer"
+								className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full border border-white/14 px-7 text-sm font-semibold text-white transition hover:bg-white hover:text-[#171c27]"
+							>
+								<SiGithub className="h-4 w-4" />
+								GitHub を見る
+							</a>
+						</div>
+					</motion.div>
+				</section>
+			</main>
+
+			<footer className="border-t border-[#d8d1c5] px-5 py-8 text-center text-xs tracking-[0.16em] text-[#6e7381] lg:px-10">
 				<span suppressHydrationWarning>© {new Date().getFullYear()}</span> oki. Built with Next.js &
 				TailwindCSS.
 			</footer>
