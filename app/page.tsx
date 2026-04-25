@@ -76,21 +76,21 @@ const useProjects = (): Project[] =>
 				image: '/img/img_next_todo.webp',
 			},
 			{
-				title: 'Nuxt.js  Todo アプリ ',
+				title: 'Nuxt.js Todo アプリ',
 				description: 'Nuxt.js を利用した CRUD システム。登録・編集・削除は動作済み。破壊的操作可。個人開発用のため自由に追加・編集・削除して問題ありません。',
 				tech: ['Nuxt.js', 'TypeScript', 'CRUD', 'TailwindCSS', 'Vercel', 'CICD'],
 				link: 'https://nuxt-todo-wine.vercel.app/',
 				image: '/img/img_nuxt_todo.webp',
 			},
 			{
-				title: 'Nuxt.js yahoo記事表示',
-				description: 'Nuxt.js を利用した yahooニュースの最新記事5件表示。',
+				title: 'yahooニュース記事表示',
+				description: 'yahooニュースの最新記事5件表示。',
 				tech: ['Nuxt.js', 'TypeScript', 'RSS'],
 				link: 'https://nuxt-yahoo-ai-lp.vercel.app/',
 				image: '/img/img_nuxt_yahoo.webp',
 			},
 			{
-				title: 'ruby on rails ECサイト',
+				title: 'ファッション ECサイト',
 				description:
 					'AIハーネス設計(planner,generator,evaluater)によるAI連携で、ECサイトの基本機能を実装。商品登録、カート、購入フローを構築。\n※無料ホスティングの都合で、初回アクセス時はスリープ復帰のため数十秒かかる場合があります',
 				tech: ['Ruby', 'Rails', 'EC', 'SQLite', 'AIハーネス'],
@@ -99,15 +99,15 @@ const useProjects = (): Project[] =>
 			},
 			{
 				title: 'サンプルLP',
-				description: 'スターバックス風のキャンペーンLP（HTML / CSS / jQuery）。',
+				description: 'スターバックス風のキャンペーンLP。',
 				tech: ['HTML', 'CSS', 'jQuery'],
 				link: 'https://static-sample-lp.onrender.com/',
 				image: '/img/img_stuba_lp.webp',
 			},
 			{
-				title: 'サンプルLP (Next.js)',
-				description: 'Next.js + TailwindCSS のLP。SEO/レスポンシブ/アクセシビリティを意識して実装。',
-				tech: ['Next.js', 'LP', 'TailwindCSS'],
+				title: 'サンプルLP',
+				description: '法人向け業務アプリ・SaaSサービスのLP。',
+				tech: ['Next.js', 'TailwindCSS'],
 				link: 'https://portfolio-rouge-two-50.vercel.app/lp',
 				image: '/img/img_soft_lp.webp',
 			},
@@ -190,7 +190,7 @@ export default function Page() {
 							variants={fadeUp}
 							className="mt-8 text-4xl font-semibold leading-[1.35] sm:text-5xl lg:text-[4.4rem]"
 						>
-							ウェブ開発のプロ
+							WEB開発
 							<span className="text-[#c9b08b]">5年以上の経験</span>
 							で安心サポート！
 						</motion.h1>
