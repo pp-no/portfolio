@@ -97,20 +97,6 @@ const useProjects = (): Project[] =>
 				link: 'https://ruby-on-rails-product.onrender.com/',
 				image: '/img/img_EC_rails.webp',
 			},
-			{
-				title: 'サンプルLP',
-				description: 'スターバックス風のキャンペーンLP。',
-				tech: ['HTML', 'CSS', 'jQuery'],
-				link: 'https://static-sample-lp.onrender.com/',
-				image: '/img/img_stuba_lp.webp',
-			},
-			{
-				title: 'サンプルLP',
-				description: '法人向け業務アプリ・SaaSサービスのLP。',
-				tech: ['Next.js', 'TailwindCSS'],
-				link: 'https://portfolio-rouge-two-50.vercel.app/lp',
-				image: '/img/img_soft_lp.webp',
-			},
 		],
 		[],
 	);
