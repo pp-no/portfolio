@@ -135,7 +135,7 @@ export default function Page() {
 
 				<header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-5 py-6 lg:px-10">
 					<a href="#home" className="flex items-center gap-3 text-sm tracking-[0.22em] text-white/90">
-						<span className="text-3xl font-bold tracking-tight">OKI.</span>
+						<span className="text-3xl font-bold tracking-tight">OKI</span>
 						<span className="text-base tracking-[0.18em]">Portfolio</span>
 					</a>
 
