@@ -177,7 +177,7 @@ export default function Page() {
 							className="mt-8 text-4xl font-semibold leading-[1.35] sm:text-5xl lg:text-[4.4rem]"
 						>
 							WEB開発
-							<span className="text-[#c9b08b]">5年以上の経験</span>
+							<span className="text-[#c9b08b]">7年以上の経験</span>
 							で安心サポート！
 						</motion.h1>
 						<motion.p
