@@ -68,6 +68,14 @@ const useProjects = (): Project[] =>
 	useMemo(
 		() => [
 			{
+				title: 'DevScope',
+				description:
+					'Webエンジニア向けの技術系YouTube動画をカテゴリー別に整理して探せるサービス。AI・フロントエンド・バックエンド・インフラなど、情報が多い技術領域を効率よくキャッチアップできるようにしました。',
+				tech: ['Next.js', 'TypeScript', 'YouTube API', 'TailwindCSS', 'Vercel'],
+				link: 'https://dev-scope-chi.vercel.app/',
+				image: '/img/img_devscope.webp',
+			},
+			{
 				title: 'Next.js Todo アプリ',
 				description:
 					'Next.js を利用した CRUD システム。登録・編集・削除は動作済み。破壊的操作可。個人開発用のため自由に追加・編集・削除して問題ありません。',
