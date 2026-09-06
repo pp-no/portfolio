@@ -4,15 +4,15 @@ import Gtm from './Gtm';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
-	title: 'ポートフォリオ',
-	description: 'Next.jsによるポートフォリオの作成',
+	title: 'OKI — Web Engineer Portfolio',
+	description: 'エンジニア歴10年。フロントエンドからバックエンドまで、使う人と引き継ぐ人に向き合うWeb開発。OKIの個人制作と開発への取り組みをご紹介します。',
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
 
 	return (
-		<html lang="en">
+		<html lang="ja">
 			<body
 				className="antialiased"
 				style={{

@@ -1,42 +1,36 @@
-# simple-lp — Portfolio (Next.js + Tailwind v4)
+# OKI — Web Engineer Portfolio
 
-個人ポートフォリオ用の LP（Landing Page）です。  
-**Next.js (App Router, TypeScript)** と **Tailwind CSS v4** で構築し、自己紹介／制作物／お問い合わせを掲載しています。
+エンジニア歴10年の経験、個人制作、開発への取り組みを紹介するポートフォリオです。実務経験の詳細は別資料で共有し、掲載作品は個人開発と明記しています。
 
-- Demo (local): http://localhost:3000
-- Tech: Next.js / React / TypeScript / Tailwind CSS v4 / lucide-react / react-icons
-
----
-
-## ✨ About This Portfolio
-
-このリポジトリ自体が **ポートフォリオWebサイト** です。  
-制作物リンクがございますのでそちらから遷移できます。
-
-> 実務経験の詳細は別資料にて共有可能です。
-
----
-
-## 🌗 Dark Mode
-
-右上のトグルで **Light / Dark** を切替。  
-初期値は `localStorage('theme')` > OS の `prefers-color-scheme` > light。  
-Chrome では `color-scheme` により **スクロールバーなどのネイティブUI** が先に切り替わる場合があります。  
-ページ配色は `dark:*` クラスの付いた要素から切り替わります。
-
----
-
-## 🛠 Tech Stack
-
-- Framework: Next.js (App Router, TypeScript)
-- Styling: Tailwind CSS v4
-- Icons: lucide-react（汎用）+ react-icons（ブランド：GitHub など）
-- Tooling: PostCSS（`@tailwindcss/postcss`）
-
----
-
-## 🚀 Getting Started
+## セットアップ
 
 ```bash
+npm ci
 npm run dev
-# or: yarn dev / pnpm dev / bun dev
+```
+
+http://localhost:3000 を開いて確認します。
+
+## 構成と更新
+
+- `app/page.tsx`: トップページ。制作物、技術領域、自己紹介、連絡先を管理します。
+- `app/page.module.css`: トップページ専用の配色・レイアウト・レスポンシブ対応。
+- `app/layout.tsx`: 日本語設定、メタデータ、GTM。
+- `public/img/`: 制作物のスクリーンショット。
+- `/lp`: 既存の別ランディングページ。
+
+Next.js App Router / TypeScript / Tailwind CSS v4 / CSS Modules を使用。トップページはServer Componentで、不要なクライアントアニメーションを読み込みません。GTMを利用する場合のみ `.env.local` に `NEXT_PUBLIC_GTM_ID` を設定してください。
+
+## デザイン方針
+
+[Minimal Gallery](https://minimal.gallery/)を参照し、明るい背景、スレートブルー、余白とタイポグラフィを中心に構成。装飾用のヒーロー写真やカードの多用を避け、実際の制作画面と開発への考え方を主役にしています。テーマ切り替えはありません。
+
+キーボードフォーカス、本文へのスキップリンク、動きを減らす設定に対応しています。外部作品は新しいタブで開き、メールリンクは端末のメールアプリを起動します。
+
+## 検証
+
+```bash
+npm run lint
+npx tsc --noEmit
+npm run build
+```
