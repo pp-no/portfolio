@@ -1,9 +1,10 @@
 import Image from 'next/image';
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Github } from 'lucide-react';
 import styles from './page.module.css';
 
 const projects = [
 	{ title: 'DevScope', category: '技術情報を、探しやすく。', description: '技術系YouTube動画をカテゴリー別に整理。AI、フロントエンド、バックエンドなど、日々のキャッチアップを支える個人開発サービスです。', tech: 'Next.js / TypeScript / YouTube API / Tailwind CSS / Vercel', link: 'https://dev-scope-chi.vercel.app/', image: '/img/img_devscope.webp' },
+	{ title: 'DailyReport', category: '書いて、翌朝に活かす。', description: '日報を記録・管理し、翌朝の業務開始30分前に前日のまとめをメールで通知するWebアプリ。Spring Boot + React でフルスタック実装し、JWT認証・Docker・GitHub Actions によるCIまでを含みます。', note: 'デモ環境は現在停止中のため、GitHubリポジトリを公開しています。', tech: 'Spring Boot 3.5 / Java 21 / React 19 / TypeScript / PostgreSQL / Docker / GitHub Actions', link: 'https://github.com/pp-no/daily-report-app', repo: true, image: '/img/img_daily_report.webp' },
 	{ title: 'Fashion EC', category: '商品登録から、購入まで。', description: 'Ruby on Railsで構築したECサイト。AIハーネスを活用し、商品登録・カート・購入フローの基本機能を実装しました。', note: '無料ホスティングのため、初回表示に数十秒かかる場合があります。', tech: 'Ruby on Rails / SQLite / AIハーネス', link: 'https://ruby-on-rails-product.onrender.com/', image: '/img/img_EC_rails.webp' },
 	{ title: 'Next.js Todo', category: 'Next.jsでつくるCRUD。', description: 'タスクの登録・編集・削除を実装した個人開発アプリ。自由に操作をお試しいただけます。', tech: 'Next.js / TypeScript / Tailwind CSS / CI/CD', link: 'https://todo-next-kappa-wheat.vercel.app', image: '/img/img_next_todo.webp' },
 	{ title: 'Nuxt.js Todo', category: 'Nuxt.jsでつくるCRUD。', description: 'Nuxt.jsによるタスク管理アプリ。こちらも自由にタスクの登録・編集・削除をお試しいただけます。', tech: 'Nuxt.js / TypeScript / Tailwind CSS / CI/CD', link: 'https://nuxt-todo-wine.vercel.app/', image: '/img/img_nuxt_todo.webp' },
@@ -43,8 +44,8 @@ export default function Page() {
 					<div className={styles.projects}>
 						{projects.map((project, index) => (
 							<article key={project.title} className={`${styles.project} ${index === 0 ? styles.featured : ''}`}>
-								<a href={project.link} target="_blank" rel="noopener noreferrer" className={styles.projectLink} aria-label={`${project.title}を開く（新しいタブ）`}>
-									<div className={styles.projectImage}><Image src={project.image} alt={`${project.title}の画面`} fill sizes={index === 0 ? '(min-width: 1200px) 1080px, 92vw' : '(min-width: 1200px) 520px, (min-width: 700px) 44vw, 92vw'} className={styles.screenshot} /><span className={styles.openProject}><ArrowUpRight size={21} aria-hidden="true" /></span></div>
+								<a href={project.link} target="_blank" rel="noopener noreferrer" className={styles.projectLink} aria-label={`${project.title}${project.repo ? 'のGitHubリポジトリ' : ''}を開く（新しいタブ）`}>
+									<div className={styles.projectImage}><Image src={project.image} alt={`${project.title}の画面`} fill sizes={index === 0 ? '(min-width: 1200px) 1080px, 92vw' : '(min-width: 1200px) 520px, (min-width: 700px) 44vw, 92vw'} className={styles.screenshot} /><span className={styles.openProject}>{project.repo ? <Github size={18} aria-hidden="true" /> : <ArrowUpRight size={21} aria-hidden="true" />}</span></div>
 									<div className={styles.projectTitle}><h3>{project.title}</h3><span>{project.category}</span></div>
 								</a>
 								<div className={styles.projectDetails}><p>{project.description}</p><p className={styles.tech}>{project.tech}</p>{project.note && <p className={styles.projectNote}>{project.note}</p>}</div>
