@@ -1,0 +1,812 @@
+/* ==========================================================================
+   Portfolio（ラフ＆ポップ案）共有スタイル
+   ハンドオフ: design_handoff_portfolio_pop / Portfolio Pop.dc.html
+   ボーダーは全て solid var(--ink)、シャドウは全て blur 0 のハードシャドウ。
+   回転角は固定値（ランダム生成しない）。
+   ========================================================================== */
+
+.portfolio {
+	/* Colors */
+	--ink: #171310;
+	--cream: #fff6e8;
+	--cream-alt: #ffe9c7;
+	--yellow: #ffd23f;
+	--red: #e8452b;
+	--green: #9be564;
+	--blue: #3d7bff;
+	--peach: #ff8a6b;
+	--body-text: #4a423a;
+	--muted: #8a7f73;
+	--on-dark: #f2e9da;
+	--on-red: #fff0dc;
+
+	/* Fonts */
+	--jp: 'Zen Kaku Gothic New', system-ui, sans-serif;
+	--hand: 'Shantell Sans', 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+
+	min-height: 100vh;
+	color: var(--ink);
+	font-family: var(--jp);
+	-webkit-font-smoothing: antialiased;
+
+	/* 地色 + 18px タイルのドットパターン。
+	   ハンドオフでは色にじみ（黄・青の radial-gradient 2枚）も指定されているが、
+	   ページ全体に敷くと画面の左半分が黄色く染まり、照合用スクリーンショットの
+	   見た目から大きく外れるため採用していない。 */
+	background-color: var(--cream);
+	background-image: radial-gradient(rgba(23, 19, 16, 0.09) 1.3px, transparent 1.3px);
+	background-size: 18px 18px;
+}
+
+/* リンク色は各クラスで明示する。ここで color を指定すると
+   .portfolio a:hover の詳細度が個別クラスの :hover を上回ってしまうため */
+.portfolio a {
+	text-decoration: none;
+}
+.portfolio ::selection {
+	background: var(--yellow);
+	color: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   スクロール フェードイン
+   回転は内側の要素が持つ。ラッパーは opacity / translateY だけを動かす
+   （transform を共有すると表示時に回転が消えるため）
+   -------------------------------------------------------------------------- */
+.reveal {
+	opacity: 0;
+	transform: translateY(16px);
+	transition:
+		opacity 0.6s ease,
+		transform 0.6s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+.revealShown {
+	opacity: 1;
+	transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+	.reveal {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+}
+
+/* --------------------------------------------------------------------------
+   共通パーツ
+   -------------------------------------------------------------------------- */
+.section {
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: clamp(56px, 7vw, 92px) 22px;
+}
+
+.badge {
+	display: inline-block;
+	padding: 5px 12px;
+	border: 3px solid var(--ink);
+	border-radius: 999px;
+	font: 800 12px/1.4 var(--hand);
+}
+.badgeWorks {
+	background: var(--green);
+	transform: rotate(-1.5deg);
+}
+.badgeAbout {
+	background: var(--cream);
+	transform: rotate(1.5deg);
+}
+.badgeWay {
+	background: var(--blue);
+	color: var(--cream);
+	transform: rotate(-1.5deg);
+}
+.badgeContact {
+	background: var(--cream);
+	transform: rotate(-1.5deg);
+}
+
+.sectionTitle {
+	margin: 16px 0 0;
+	font: 900 clamp(27px, 3.8vw, 42px) / 1.32 var(--jp);
+	letter-spacing: -0.02em;
+}
+.sectionLead {
+	margin: 14px 0 0;
+	max-width: 560px;
+	font: 500 14.5px/1.9 var(--jp);
+	color: var(--body-text);
+	text-wrap: pretty;
+}
+.note {
+	color: var(--muted);
+}
+
+/* ボタン共通（ピル + 黒フチ + ハードシャドウ） */
+.btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 9px;
+	border: 3px solid var(--ink);
+	border-radius: 999px;
+	color: var(--ink);
+	cursor: pointer;
+	box-shadow: 4px 4px 0 var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+.header {
+	position: sticky;
+	top: 0;
+	z-index: 60;
+	background: var(--cream);
+	border-bottom: 3px solid var(--ink);
+}
+.headerInner {
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 12px 22px;
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	flex-wrap: wrap;
+}
+.logo {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	color: var(--ink);
+}
+.logoMark {
+	width: 36px;
+	height: 36px;
+	border: 3px solid var(--ink);
+	border-radius: 12px;
+	background: var(--yellow);
+	display: grid;
+	place-items: center;
+	font: 800 16px/1 var(--hand);
+	box-shadow: 3px 3px 0 var(--ink);
+	transform: rotate(-4deg);
+}
+.logoText {
+	font: 800 18px/1 var(--hand);
+}
+.nav {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	flex-wrap: wrap;
+}
+.navLink {
+	padding: 9px 13px;
+	border-radius: 10px;
+	font: 700 13.5px/1 var(--jp);
+	color: var(--ink);
+}
+.navLink:hover {
+	background: var(--yellow);
+	color: var(--ink);
+}
+.navCta {
+	margin-left: 4px;
+	padding: 11px 20px;
+	border: 3px solid var(--ink);
+	border-radius: 999px;
+	background: var(--red);
+	color: var(--cream);
+	font: 800 13.5px/1 var(--jp);
+	box-shadow: 3px 3px 0 var(--ink);
+}
+.navCta:hover {
+	background: var(--ink);
+	color: var(--yellow);
+}
+
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+.hero {
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: clamp(44px, 7vw, 84px) 22px clamp(36px, 5vw, 60px);
+}
+.heroGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+	gap: clamp(28px, 4vw, 52px);
+	align-items: start;
+}
+.statusBadge {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 14px;
+	border: 3px solid var(--ink);
+	border-radius: 999px;
+	background: var(--green);
+	font: 800 12.5px/1 var(--jp);
+	box-shadow: 3px 3px 0 var(--ink);
+	transform: rotate(-1.5deg);
+}
+.statusDot {
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+	background: var(--ink);
+}
+.heroTitle {
+	margin: 22px 0 0;
+	font: 900 clamp(33px, 5.4vw, 60px) / 1.26 var(--jp);
+	letter-spacing: -0.02em;
+	text-wrap: pretty;
+}
+/* 黄色マーカー線つきの語 */
+.marker {
+	display: inline-block;
+	position: relative;
+	margin-top: 6px;
+}
+.markerText {
+	position: relative;
+	z-index: 1;
+	font-family: var(--hand);
+	font-weight: 800;
+}
+.markerLine {
+	position: absolute;
+	left: -4px;
+	right: -6px;
+	bottom: 2px;
+	height: 38%;
+	background: var(--yellow);
+	border-radius: 4px;
+	transform: rotate(-1deg);
+}
+/* 日本語の禁則処理（小書き仮名・長音符が行頭に来ないように） */
+.keepAll {
+	display: inline-block;
+	word-break: keep-all;
+	line-break: strict;
+}
+.heroLead {
+	margin: 22px 0 0;
+	max-width: 520px;
+	font: 500 15.5px/1.95 var(--jp);
+	color: var(--body-text);
+	text-wrap: pretty;
+}
+.heroActions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-top: 28px;
+}
+.heroBtnPrimary {
+	padding: 15px 24px;
+	background: var(--yellow);
+	font: 800 14.5px/1 var(--jp);
+}
+.heroBtnPrimary:hover {
+	background: var(--ink);
+	color: var(--yellow);
+}
+.heroBtnMail {
+	padding: 15px 22px;
+	background: var(--cream);
+	font: 700 14px/1 var(--jp);
+}
+.heroBtnMail:hover {
+	background: var(--blue);
+	color: var(--cream);
+}
+.heroBtnGithub {
+	padding: 15px 22px;
+	background: var(--cream);
+	font: 700 14px/1 var(--hand);
+}
+.heroBtnGithub:hover {
+	background: var(--green);
+	color: var(--ink);
+}
+
+/* ターミナル風パネル */
+.heroAside {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+.terminal {
+	border: 3px solid var(--ink);
+	border-radius: 20px;
+	background: var(--cream);
+	box-shadow: 7px 7px 0 var(--ink);
+	overflow: hidden;
+	transform: rotate(1deg);
+}
+.terminalBar {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 11px 16px;
+	border-bottom: 3px solid var(--ink);
+	background: var(--blue);
+}
+.terminalDot {
+	width: 11px;
+	height: 11px;
+	border-radius: 50%;
+	border: 2px solid var(--ink);
+}
+.terminalTitle {
+	margin-left: 6px;
+	font: 800 12px/1 var(--hand);
+	color: var(--cream);
+}
+.terminalBody {
+	padding: 22px 22px 18px;
+	display: flex;
+	flex-direction: column;
+	gap: 11px;
+}
+.factRow {
+	display: flex;
+	gap: 12px;
+	align-items: baseline;
+}
+.factKey {
+	font: 800 12.5px/1.6 var(--hand);
+	color: var(--red);
+	min-width: 66px;
+}
+.factValue {
+	font: 700 14px/1.6 var(--jp);
+	color: var(--ink);
+}
+
+/* 統計カード */
+.stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+	gap: 12px;
+}
+.statCard {
+	border: 3px solid var(--ink);
+	border-radius: 16px;
+	padding: 16px;
+	box-shadow: 5px 5px 0 var(--ink);
+}
+.statNumber {
+	font: 800 clamp(26px, 3.4vw, 34px) / 1 var(--hand);
+}
+.statLabel {
+	margin-top: 8px;
+	font: 700 11.5px/1.5 var(--jp);
+	word-break: keep-all;
+}
+
+/* --------------------------------------------------------------------------
+   技術スタック ティッカー
+   -------------------------------------------------------------------------- */
+.ticker {
+	border-top: 3px solid var(--ink);
+	border-bottom: 3px solid var(--ink);
+	background: var(--ink);
+	overflow: hidden;
+}
+.tickerTrack {
+	display: flex;
+	width: max-content;
+	animation: tick 34s linear infinite;
+}
+.tickerGroup {
+	display: flex;
+	gap: 26px;
+	padding: 12px 16px;
+	font: 800 13px/1 var(--hand);
+	color: var(--cream);
+	white-space: nowrap;
+}
+@keyframes tick {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-50%);
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.tickerTrack {
+		animation: none;
+	}
+}
+
+/* --------------------------------------------------------------------------
+   01 Works
+   -------------------------------------------------------------------------- */
+.worksHead {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 20px;
+	margin-bottom: 30px;
+}
+.worksHeadMain {
+	flex: 1 1 330px;
+}
+.filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+.filter {
+	padding: 9px 15px;
+	border: 3px solid var(--ink);
+	border-radius: 999px;
+	background: var(--cream);
+	color: var(--ink);
+	box-shadow: 3px 3px 0 var(--ink);
+	font: 800 12.5px/1 var(--jp);
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+.filterOn {
+	background: var(--ink);
+	color: var(--yellow);
+	box-shadow: 3px 3px 0 var(--green);
+}
+
+.works {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	gap: 20px;
+	/* 詳細を開いた時に隣のカードが引き伸ばされないように */
+	align-items: start;
+}
+.workCard {
+	display: flex;
+	flex-direction: column;
+	border: 3px solid var(--ink);
+	border-radius: 20px;
+	overflow: hidden;
+	background: var(--cream);
+	box-shadow: 6px 6px 0 var(--ink);
+	transition: box-shadow 0.2s ease;
+}
+.workCardOpen {
+	box-shadow: 8px 8px 0 var(--red);
+}
+.workHead {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 14px 18px;
+	border-bottom: 3px solid var(--ink);
+}
+.workNo {
+	width: 26px;
+	height: 26px;
+	border: 2.5px solid var(--ink);
+	border-radius: 8px;
+	background: var(--cream);
+	display: grid;
+	place-items: center;
+	font: 800 12px/1 var(--hand);
+}
+.workKind {
+	font: 800 11.5px/1.3 var(--hand);
+	color: var(--ink);
+}
+.workBody {
+	padding: 22px;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+}
+.workTitle {
+	margin: 0;
+	font: 900 clamp(19px, 2.2vw, 23px) / 1.4 var(--jp);
+}
+.workPunch {
+	margin-top: 10px;
+	font: 800 13.5px/1.6 var(--hand);
+	color: var(--red);
+}
+.workText {
+	margin: 14px 0 0;
+	font: 500 13.5px/1.9 var(--jp);
+	color: var(--body-text);
+	text-wrap: pretty;
+}
+.workTags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 7px;
+	margin-top: 16px;
+}
+.tag {
+	padding: 5px 10px;
+	border: 2px solid var(--ink);
+	border-radius: 7px;
+	background: var(--cream);
+	font: 700 11px/1.4 var(--jp);
+}
+.workActions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-top: auto;
+	padding-top: 20px;
+}
+.workBtnOpen {
+	gap: 8px;
+	padding: 11px 17px;
+	background: var(--yellow);
+	font: 800 13px/1 var(--jp);
+	box-shadow: 3px 3px 0 var(--ink);
+}
+.workBtnOpen:hover {
+	background: var(--ink);
+	color: var(--yellow);
+}
+.workBtnDetail {
+	gap: 7px;
+	padding: 11px 16px;
+	background: var(--cream);
+	font: 700 13px/1 var(--jp);
+	box-shadow: 3px 3px 0 var(--ink);
+}
+.workBtnDetail:hover {
+	background: var(--blue);
+	color: var(--cream);
+}
+.workDetail {
+	border-top: 3px solid var(--ink);
+	background: var(--ink);
+	padding: 20px 22px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+.detailLabel {
+	font: 800 11.5px/1 var(--hand);
+}
+.detailProblem {
+	color: var(--yellow);
+}
+.detailApproach {
+	color: var(--green);
+}
+.detailWhy {
+	color: var(--peach);
+}
+.detailText {
+	margin: 8px 0 0;
+	font: 500 13px/1.85 var(--jp);
+	color: var(--on-dark);
+}
+
+/* --------------------------------------------------------------------------
+   02 About
+   -------------------------------------------------------------------------- */
+.about {
+	border-top: 3px solid var(--ink);
+	border-bottom: 3px solid var(--ink);
+	background: var(--cream-alt);
+}
+.aboutGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: clamp(28px, 4.5vw, 56px);
+}
+.aboutBody {
+	margin-top: 22px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	max-width: 560px;
+}
+.aboutBody p {
+	margin: 0;
+	font: 500 14.5px/2 var(--jp);
+	color: var(--body-text);
+	text-wrap: pretty;
+}
+.skills {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+.skillCard {
+	border: 3px solid var(--ink);
+	border-radius: 18px;
+	padding: 20px 22px;
+	background: var(--cream);
+	box-shadow: 5px 5px 0 var(--ink);
+}
+.skillHead {
+	display: flex;
+	align-items: center;
+	gap: 11px;
+}
+.skillNo {
+	width: 28px;
+	height: 28px;
+	border: 2.5px solid var(--ink);
+	border-radius: 9px;
+	display: grid;
+	place-items: center;
+	font: 800 13px/1 var(--hand);
+}
+.skillLabel {
+	font: 900 15px/1 var(--jp);
+}
+.chips {
+	margin-top: 14px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 7px;
+}
+.chip {
+	padding: 6px 11px;
+	border: 2px solid var(--ink);
+	border-radius: 999px;
+	background: var(--cream);
+	font: 700 11.5px/1.3 var(--jp);
+}
+
+/* --------------------------------------------------------------------------
+   03 How I work
+   -------------------------------------------------------------------------- */
+.wayLead {
+	max-width: 600px;
+}
+.wayCards {
+	margin-top: 30px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 18px;
+}
+.wayCard {
+	border: 3px solid var(--ink);
+	border-radius: 20px;
+	padding: 26px;
+	box-shadow: 6px 6px 0 var(--ink);
+}
+.wayMark {
+	font: 800 40px/1 var(--hand);
+	color: var(--ink);
+}
+.wayTitle {
+	margin-top: 14px;
+	font: 900 clamp(20px, 2.4vw, 25px) / 1.3 var(--jp);
+}
+.wayText {
+	margin: 10px 0 0;
+	font: 500 13.5px/1.9 var(--jp);
+	color: var(--body-text);
+	text-wrap: pretty;
+}
+
+/* --------------------------------------------------------------------------
+   04 Contact
+   -------------------------------------------------------------------------- */
+.contact {
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 0 22px clamp(56px, 7vw, 92px);
+}
+.contactPanel {
+	position: relative;
+	overflow: hidden;
+	border: 3px solid var(--ink);
+	border-radius: 26px;
+	padding: clamp(30px, 4.5vw, 56px);
+	background: var(--red);
+	box-shadow: 9px 9px 0 var(--ink);
+}
+.contactCircle {
+	position: absolute;
+	right: -40px;
+	top: -40px;
+	width: 180px;
+	height: 180px;
+	border: 3px solid var(--ink);
+	border-radius: 50%;
+	background: var(--yellow);
+	opacity: 0.9;
+}
+.contactInner {
+	position: relative;
+	z-index: 1;
+}
+.contactTitle {
+	margin: 18px 0 0;
+	font: 900 clamp(28px, 4.4vw, 48px) / 1.28 var(--jp);
+	color: var(--cream);
+	letter-spacing: -0.02em;
+	text-wrap: pretty;
+}
+.contactLead {
+	margin: 16px 0 0;
+	max-width: 580px;
+	font: 600 14.5px/1.9 var(--jp);
+	color: var(--on-red);
+	text-wrap: pretty;
+}
+.contactActions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-top: 28px;
+}
+.contactBtnMail {
+	padding: 16px 26px;
+	background: var(--yellow);
+	font: 800 15px/1 var(--jp);
+}
+.contactBtnMail:hover {
+	background: var(--cream);
+	color: var(--ink);
+}
+.contactBtnGithub {
+	padding: 16px 24px;
+	background: var(--cream);
+	font: 700 14.5px/1 var(--hand);
+}
+.contactBtnGithub:hover {
+	background: var(--green);
+	color: var(--ink);
+}
+.contactMeta {
+	margin-top: 26px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	font: 700 12.5px/1.6 var(--hand);
+	color: var(--on-red);
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.footer {
+	border-top: 3px solid var(--ink);
+	background: var(--ink);
+}
+.footerInner {
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 22px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	align-items: center;
+	justify-content: space-between;
+	font: 700 12.5px/1.6 var(--hand);
+	color: var(--on-red);
+}
+.footerStack {
+	color: var(--yellow);
+}
+
+/* 本文へスキップ */
+.skipLink {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	z-index: 100;
+	padding: 12px 16px;
+	border: 3px solid var(--ink);
+	border-radius: 999px;
+	background: var(--yellow);
+	color: var(--ink);
+	font: 800 13px/1 var(--jp);
+	transform: translateY(-200%);
+}
+.skipLink:focus {
+	transform: translateY(0);
+}

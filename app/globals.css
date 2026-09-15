@@ -1,12 +1,24 @@
 /* app/globals.css */
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @custom-variant dark (&:where(.dark, .dark *));
 /* どのファイルをスキャンするか (v4ではCSSで宣言) */
 @source "./app/**/*.{js,ts,jsx,tsx,mdx}" "./components/**/*.{js,ts,jsx,tsx,mdx}";
 
 /* 任意の追加スタイル */
-html { scroll-behavior: smooth; }
+html {
+	scroll-behavior: smooth;
+}
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+/* JavaScript が無効な環境ではフェードインの初期状態（非表示）を打ち消す */
+@media (scripting: none) {
+	[data-reveal] {
+		opacity: 1 !important;
+		transform: none !important;
+	}
 }
